@@ -9,8 +9,11 @@ def registration():
 
 #  args = list , kwargs = dictionary
 def home_view(request, *args, ** kwargs):
-    art = Art.objects.get(id = 2)
-    return render(request, "index.html", {'art':art})
+    arts = Art.objects.values()
+    myList = []
+    for art in arts:
+        myList.append(Art.objects.get(id = art['id']))
+    return render(request, "index.html", {'arts': myList})
 
 
 def about_us():
