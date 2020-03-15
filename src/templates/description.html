@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+.card-layout {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    background: #ffffff;
+}
+</style>
+
+<div class="card card-layout " style="width: 50rem;">
+            <img class="card-img-top" src="{{ object.image.url }}" style="width:100%"></img>
+            <h1 class="text-danger" >
+                {{ object.art_name}}
+            </h1>
+            <div class="card-body">
+                <p class="text-primary" class="card-text">
+                    {{ object.description }}
+                </p>
+               <a href="add">
+                <button type="button" class="btn btn-warning" >
+                    ADD TO CART
+               </button>
+               </a>
+            </div>
+</div>
+{% endblock %}
