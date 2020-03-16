@@ -34,8 +34,19 @@ def about_us_view(request, *args, **kwargs):
     return render(request,"aboutus.html",{})
 
 def cart_view(request, *args, **kwargs):
+    user_obj = User.objects.get(username = request.user)
+    cart_obj = MyCart.objects.filter(user = user_obj)
+    img = list()
+    for item in cart_obj:
+        artObj= Art.objects.get(id = item.art_id.id) 
+        img.append(artObj)
+        
+    con = zip(cart_obj,img)    
+    context={
+        'con':con
+    }
 
-    return render(request,"cart.html",{})
+    return render(request,"cart.html",context)
 
 def order_view(request, *args, **kwargs):
     
