@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 >Your Cart </h1>
+
+
+{% for cart,art in con %}
+
+<div class="card card-layout " style="width: 50rem;">
+  <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
+  <h1 class="text-danger" >
+      quantity = {{ cart.quantity}}
+  </h1>
+  <h1 class="text-danger" >
+      price = {{ art.price}}
+  </h1>
+  <div class="card-body">
+      <p class="text-primary" class="card-text " style = "color: aqua">
+          date = {{ cart.added_date }}
+      </p>
+     </a>
+  </div>
+</div>
+
+
+{% endfor %}
+
+
+{% endblock %}
+
