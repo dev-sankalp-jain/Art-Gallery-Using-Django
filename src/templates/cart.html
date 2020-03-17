@@ -2,25 +2,33 @@
 
 {% block content %}
 
-<h1 >Your Cart </h1>
+<h1>Your Cart </h1>
 
+<style>
+    .back-class {
+        background-color: aliceblue;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+    }
+
+    h3 {
+        color: seagreen;
+    }
+</style>
 
 {% for cart,art in con %}
 
-<div class="card card-layout " style="width: 50rem;">
-  <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
-  <h1 class="text-danger" >
-      quantity = {{ cart.quantity}}
-  </h1>
-  <h1 class="text-danger" >
-      price = {{ art.price}}
-  </h1>
-  <div class="card-body">
-      <p class="text-primary" class="card-text " style = "color: aqua">
-          date = {{ cart.added_date }}
-      </p>
-     </a>
-  </div>
+<form action="order/{{ art.id }}" method="POST">
+    {% csrf_token %}
+<div class="card card-layout back-class" style="width: 50rem;">
+    <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
+    <h3>price = {{ art.price}}</h3>
+    <h3>date = {{ cart.added_date }}</h3>
+    <input type = 'Submit' name='submit' value='ORDER' style="color: chocolate; padding: 10px 200px; border-radius: 5px;"> 
+</div>
+</form>
+</div>
 </div>
 
 
@@ -28,4 +36,3 @@
 
 
 {% endblock %}
-
