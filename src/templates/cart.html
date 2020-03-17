@@ -25,9 +25,20 @@
     <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
     <h3>price = {{ art.price}}</h3>
     <h3>date = {{ cart.added_date }}</h3>
-    <input type = 'Submit' name='submit' value='ORDER' style="color: chocolate; padding: 10px 200px; border-radius: 5px;"> 
-</div>
+    {% if art.instock == True %}
+    <input class="btn btn-warning" type = 'Submit' name='submit' value='ORDER' style="width: 460px "> 
+    {% else %}
+    <h1 style="color: red;"> out of stock</h1>
+    {% endif %}
 </form>
+    {% if art.instock == True %}
+    <a href="remove/{{ art.id }}">
+        <button type="button" class="btn btn-warning" style="width: 460px; margin-top: 10px;">
+            REMOVE FROM CART
+        </button>
+    </a>
+    {% endif %}
+</div>
 </div>
 </div>
 

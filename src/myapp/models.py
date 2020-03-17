@@ -24,6 +24,7 @@ class Art(models.Model):
     image = models.ImageField(upload_to=os.path.join(BASE_DIR, "media"))
     price = models.FloatField(null=False, blank=False)
     description = models.TextField(null=False, blank=False)
+    instock = models.BooleanField(null = False,blank=False, default=True)
 
 
 # TAGs
@@ -39,6 +40,7 @@ class MyCart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     art_id = models.ForeignKey(Art, on_delete=models.CASCADE)
     added_date = models.DateTimeField(default=datetime.now())
+
 
 # Order Table
 

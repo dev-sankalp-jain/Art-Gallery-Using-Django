@@ -3,7 +3,9 @@
 {% block content %}
   
 <style>
-    
+    .back-changes{
+      background-color: aliceblue;
+    }
 </style>
 
 <div class="container">
@@ -11,7 +13,7 @@
     
       {% for art in arts %}
 
-            <div class="col-6 col-md-6 col-lg-4 "
+            <div class="col-6 col-md-6 col-lg-4   "
              data-aos="fade-up" data-aos-delay="100"  >
               <a href="description/{{art.id}}" class="d-block photo-item">
                 <img src='{{ art.image.url }} 'alt="Image" style="width:300px;height:200px;" class="img-fluid">
@@ -19,6 +21,9 @@
                   <div class="photo-text-more">
                   <h4 class="heading">{{ art.art_name  }} </h4>
                   <span class="meta"> ₹ {{art.price}} </span>
+                  {% if art.instock == False %}
+                  <span class="meta" style="color: red;" > Out of Stock </span>
+                  {% endif %}
                   <h1><br></h1>
                   
                 </div>

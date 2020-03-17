@@ -2,29 +2,33 @@
 
 {% block content %}
 <style>
-.card-layout {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    background: #ffffff;
-}
+    .card-layout {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 50px;
+        padding: 20px;
+        background: #ffffff;
+    }
 </style>
 
 <div class="card card-layout " style="width: 50rem;">
-            <img class="card-img-top" src="{{ object.image.url }}" style="width:100%"></img>
-            <h1 class="text-danger" >
-                {{ object.art_name}}
-            </h1>
-            <div class="card-body">
-                <p class="text-primary" class="card-text">
-                    {{ object.description }}
-                </p>
-               <a href="add">
-                <button type="button" class="btn btn-warning" >
-                    ADD TO CART
-               </button>
-               </a>
-            </div>
+    <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
+    <h1 class="text-danger">
+        {{ art.art_name}}
+    </h1>
+    <div class="card-body">
+        <p class="text-primary" class="card-text">
+            {{ art.description }}
+        </p>
+        {% if art.instock == True  %}
+        <a href="add">
+            <button type="button" class="btn btn-warning" style="width: 450px;">
+                ADD TO CART
+            </button>
+        </a>
+            {% else %}
+            <h1 style="color: red"> out of stock </h1>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

@@ -29,5 +29,6 @@ urlpatterns = [
     path('description/<int:id>/', description_view, name = 'description'),
     path('description/<int:id>/add/', add, name = 'add'),
     path('cart/order/<int:id>', order, name = 'order'),
+    path('cart/remove/<int:id>', remove, name = 'remove'),
     
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

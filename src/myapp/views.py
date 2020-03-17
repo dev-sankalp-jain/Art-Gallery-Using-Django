@@ -13,9 +13,9 @@ def home_view(request, *args, ** kwargs):
 
 
 def description_view(request, id, *args, **kwargs):
-    object = Art.objects.get(id=id)
+    art = Art.objects.get(id=id)
     context = {
-        'object': object
+        'art': art
     }
     return render(request, 'description.html', context)
 
@@ -30,6 +30,11 @@ def add(request, id, *args, **kwargs):
         user=user_obj[0], art_id=art_obj[0], added_date=datetime.now())
     obj.save()
     return redirect('../../../')
+def remove(request, id,*args, **kwargs):
+    cart_obj = MyCart.objects.get(art_id= id)
+    cart_obj.delete()
+    
+    return redirect('cart')
 
 
 def about_us_view(request, *args, **kwargs):
@@ -61,7 +66,9 @@ def order(request,id, *args, **kwargs):
     obj.save()
     cart_obj = MyCart.objects.filter(art_id = art_obj)
     cart_obj.delete()
-    return render(request, "cart.html",{})
+    art_obj.instock = False
+    art_obj.save()
+    return redirect('cart')
 
 def order_view(request, *args, **kwargs):
     user_obj = User.objects.get(username=request.user)
