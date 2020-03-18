@@ -4,9 +4,6 @@ from .models import *
 from django.contrib.auth.models import User, auth
 from datetime import datetime
 
-#  args = list , kwargs = dictionary
-
-
 def home_view(request, *args, ** kwargs):
     arts = Art.objects.all()
     return render(request, "index.html", {'arts': arts})
@@ -30,6 +27,8 @@ def add(request, id, *args, **kwargs):
         user=user_obj[0], art_id=art_obj[0], added_date=datetime.now())
     obj.save()
     return redirect('../../../')
+
+    
 def remove(request, id,*args, **kwargs):
     cart_obj = MyCart.objects.get(art_id= id)
     cart_obj.delete()
@@ -83,4 +82,6 @@ def order_view(request, *args, **kwargs):
         'con': con
     }
     return render(request,"order.html",context)
+
+
 

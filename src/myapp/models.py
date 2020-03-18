@@ -11,14 +11,13 @@ User = get_user_model()
 # Artist
 class Artist(models.Model):
 
-    artist_name = models.CharField(max_length=300)
-    speciality = models.CharField(max_length=300)
+    artist_name = models.CharField(max_length=300 , null = False, blank = False)
+    speciality = models.CharField(max_length=300,null = False, blank = False)
 
 # Art
 
 
 class Art(models.Model):
-
     art_name = models.CharField(max_length=50, null=False, blank=False)
     art_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=os.path.join(BASE_DIR, "media"))
@@ -52,15 +51,3 @@ class MyOrder(models.Model):
     date = models.DateTimeField(default=datetime.now())
     
 
-# Employee
-
-
-class Employee(models.Model):
-
-    emp_name = models.CharField(max_length=50, null=False, blank=False)
-    phone = models.CharField(max_length=13, null=False, blank=False, unique=True)
-    email = models.EmailField(null=False, blank=False, unique=True)
-    password = models.CharField(max_length=20, null=False, blank=False, unique=True)
-    post = models.CharField(max_length=20, null=False, blank=False)
-    address = models.TextField(null=False, blank=False)
-    salary = models.FloatField(null=False, blank=False)
