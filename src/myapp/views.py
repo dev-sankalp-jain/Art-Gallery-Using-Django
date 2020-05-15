@@ -6,9 +6,17 @@ from datetime import datetime
 
 def home_view(request, *args, ** kwargs):
     arts = Art.objects.all()
-    return render(request, "index.html", {'arts': arts})
+    tags = Tag.objects.values('tag').distinct()
+    context = {
+        'arts': arts,
+        'tags': tags
+    }
+    return render(request, "index.html", context)
 
-
+def cat(request, id, *args, **kwargs):
+    arts=Tag.objects.filter(tag=id)
+    return render(request, 'category.html', {'arts':arts})
+    
 def description_view(request, id, *args, **kwargs):
     art = Art.objects.get(id=id)
     context = {

@@ -22,12 +22,11 @@ class Art(models.Model):
     art_artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=os.path.join(BASE_DIR, "media"))
     price = models.FloatField(null=False, blank=False)
-    description = models.TextField(null=False, blank=False)
     instock = models.BooleanField(null = False,blank=False, default=True)
-
+    description = models.TextField(null=False, blank=False)
 
 # TAGs
-class Category(models.Model):
+class Tag(models.Model):
 
     tag = models.CharField(max_length=300, null=False)
     artid = models.ForeignKey(Art, on_delete=models.CASCADE)
