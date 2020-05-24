@@ -6,52 +6,57 @@
   .back-changes {
     background-color: aliceblue;
   }
-  
+
+  .row {
+    padding-bottom: 10px;
+  }
 </style>
 
-<div class="container">
-  <form action="" method="POST">
-    {% csrf_token %}
-    <div class="dropdown" style="float: right;margin-bottom: 25px;">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-      {% for tag in tags %}
-        <li><a href="cat/{{tag.tag}}">{{tag.tag}}</a></li>
-      {% endfor %}
-    </ul>
-    </div>
-</div>
+
+<!-- Categories -->
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <div class="icon-bar-cat">
+    {% for tag in tags %}
+    <a href="cat/{{tag.tag}}">{{tag.tag}}</a>
+    {% endfor %}
+  </div>
 </form>
 
 
-<div class="row">
+<div class="container">
 
-  {% for art in arts %}
-  <div class="col-6 col-md-6 col-lg-4   " data-aos="fade-up" data-aos-delay="100">
-    <a href="description/{{art.id}}" class="d-block photo-item">
-      <img src='{{ art.image.url }} ' alt="Image" style="width:300px;height:200px;" class="img-fluid">
-      <div class="photo-text-more">
-        <div class="photo-text-more">
-          <h4 class="heading">{{ art.art_name  }} </h4>
-          <span class="meta"> ₹ {{art.price}} </span>
-          {% if art.instock == False %}
-          <span class="meta" style="color: red;"> Out of Stock </span>
-          {% endif %}
-          <h1><br></h1>
 
+
+  <div class="row">
+    {% for art in arts %}
+    <div class="col-sm-6 col-md-4 col-lg-4 ">
+      <a href="description/{{art.id}}" class="d-block photo-item">
+        <div class="card card-inverse card-info">
+          <img class="card-img-top" src='{{ art.image.url }} ' />
+          <div class="card-block">
+            <h4 class="card-title">{{ art.art_name  }}</h4>
+            <div class="card-text">
+              {% if art.instock == False %}
+              <span class="meta" style="color: red;"> Status : Out of Stock </span>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="meta">
+              <center> Price : ₹ {{art.price}} </center>
+            </span>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
+
+    {% endfor %}
   </div>
-  {% endfor %}
-
-</div>
 </div>
 
-</body>
+</div>
 
-</html>
 
 {% endblock %}
-

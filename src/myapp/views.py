@@ -31,6 +31,7 @@ def add(request, id, *args, **kwargs):
         return redirect('../../../login/login')
     user_obj = User.objects.filter(username=request.user)
     art_obj = Art.objects.filter(id=id)
+    
     obj = MyCart.objects.create(
         user=user_obj[0], art_id=art_obj[0], added_date=datetime.now())
     obj.save()

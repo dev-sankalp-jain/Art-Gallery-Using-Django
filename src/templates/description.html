@@ -3,7 +3,7 @@
 {% block content %}
 <style>
     .card-layout {
-        width: 80%;
+        width: 50%;
         margin: 0 auto;
         margin-top: 50px;
         padding: 20px;
@@ -13,22 +13,25 @@
 
 <div class="card card-layout " style="width: 50rem;">
     <img class="card-img-top" src="{{ art.image.url }}" style="width:100%"></img>
-    <h1 class="text-danger">
+    
+    <h1 class="text-danger card-block card-title">
         {{ art.art_name}}
     </h1>
     <div class="card-body">
         <p class="text-primary" class="card-text">
             {{ art.description }}
         </p>
+        <div class="card-footer">
         {% if art.instock == True  %}
         <a href="add">
-            <button type="button" class="btn btn-warning" style="width: 450px;">
+            <button type="button" class="btn btn-info btn-sm" style="width: 450px;">
                 ADD TO CART
             </button>
         </a>
             {% else %}
             <h1 style="color: red"> out of stock </h1>
         {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
