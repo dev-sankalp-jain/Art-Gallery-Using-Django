@@ -1,2 +1,0 @@
-SECRET_KEY = 'h0$mk6u6@rhg1gucn(tur0qx5t18na#_v0%w(7%$mznb9eo5)6'
-DEBUG = True
